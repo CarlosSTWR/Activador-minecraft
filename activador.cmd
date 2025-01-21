@@ -1,4 +1,11 @@
 @echo off
+:: Verificar si se ejecuta como administrador
+openfiles >nul 2>&1 || (
+    echo Este script requiere permisos de administrador. Por favor, ejecúte nuevamente como administrador.
+    pause
+    exit /b
+)
+
 :menu
 cls
 echo ============================================
@@ -67,7 +74,12 @@ goto activar
 cls
 echo Activando el juego para 32 bits...
 if exist "Activador\32bits\AT1\Windows.ApplicationModel.Store.dll" (
-    copy /y "Activador\32bits\AT1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll"
+    copy /y "Activador\32bits\AT1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
+    if errorlevel 1 (
+        echo Error al copiar archivos. Verifique los permisos.
+        pause
+        goto menu
+    )
 )
 echo Activacion completada para 32 bits.
 pause
@@ -77,7 +89,12 @@ goto menu
 cls
 echo Activando el juego para 64 bits...
 if exist "Activador\64bits\AT1\Windows.ApplicationModel.Store.dll" (
-    copy /y "Activador\64bits\AT1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\SysWOW64\Windows.ApplicationModel.Store.dll"
+    copy /y "Activador\64bits\AT1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\SysWOW64\Windows.ApplicationModel.Store.dll" >nul 2>&1
+    if errorlevel 1 (
+        echo Error al copiar archivos. Verifique los permisos.
+        pause
+        goto menu
+    )
 )
 echo Activacion completada para 64 bits.
 pause
@@ -87,10 +104,20 @@ goto menu
 cls
 echo Desactivando el juego...
 if exist "Desactivador\32bits\DC1\Windows.ApplicationModel.Store.dll" (
-    copy /y "Desactivador\32bits\DC1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll"
+    copy /y "Desactivador\32bits\DC1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
+    if errorlevel 1 (
+        echo Error al copiar archivos. Verifique los permisos.
+        pause
+        goto menu
+    )
 )
 if exist "Desactivador\64bits\DC1\Windows.ApplicationModel.Store.dll" (
-    copy /y "Desactivador\64bits\DC1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\SysWOW64\Windows.ApplicationModel.Store.dll"
+    copy /y "Desactivador\64bits\DC1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\SysWOW64\Windows.ApplicationModel.Store.dll" >nul 2>&1
+    if errorlevel 1 (
+        echo Error al copiar archivos. Verifique los permisos.
+        pause
+        goto menu
+    )
 )
 echo Desactivacion completada.
 pause
@@ -121,9 +148,9 @@ if errorlevel 1 (
     pause
     goto menu
 )
-echo Extrayendo el ZIP...
-powershell -Command "Expand-Archive -Path 'Activador-minecraft-main.zip' -DestinationPath . -Force"
-echo Descarga y extraccion completadas.
+echo ZIP descargado correctamente.
+echo.
+echo Manteniendo el archivo ZIP sin extraer en la carpeta actual.
 pause
 goto menu
 
