@@ -53,9 +53,9 @@ goto activar
 :activar_32bits
 cls
 echo Activando el juego para 32 bits...
-if exist "Activador\32bits\AT1\Windows.ApplicationModel.Store.dll" (
-    copy /y "Activador\32bits\AT1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
-    copy /y "Activador\32bits\AT1\Windows.ApplicationModel.Store.dll" "%USERPROFILE%\Desktop\Windows.ApplicationModel.Store.dll" >nul 2>&1
+if exist "Activador\32bits\Windows.ApplicationModel.Store.dll" (
+    copy /y "Activador\32bits\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
+    copy /y "Activador\32bits\Windows.ApplicationModel.Store.dll" "%USERPROFILE%\Desktop\Windows.ApplicationModel.Store.dll" >nul 2>&1
     if errorlevel 1 (
         echo Error al copiar archivos. Verifique los permisos.
         pause
