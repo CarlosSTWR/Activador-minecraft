@@ -53,9 +53,9 @@ goto activar
 :activar_32bits
 cls
 echo Activando el juego para 32 bits...
-if exist "Activador\32bits\Windows.ApplicationModel.Store.dll" (
-    copy /y "Activador\32bits\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
-    copy /y "Activador\32bits\Windows.ApplicationModel.Store.dll" "%USERPROFILE%\Desktop\Windows.ApplicationModel.Store.dll" >nul 2>&1
+if exist "Activador\32bits\System32\Windows.ApplicationModel.Store.dll" (
+    copy /y "Activador\32bits\System32\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
+    copy /y "Activador\32bits\System32\Windows.ApplicationModel.Store.dll" "%USERPROFILE%\Desktop\Windows.ApplicationModel.Store.dll" >nul 2>&1
     if errorlevel 1 (
         echo Error al copiar archivos. Verifique los permisos.
         pause
@@ -69,9 +69,13 @@ goto menu
 :activar_64bits
 cls
 echo Activando el juego para 64 bits...
-if exist "Activador\64bits\AT1\Windows.ApplicationModel.Store.dll" (
-    copy /y "Activador\64bits\AT1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\SysWOW64\Windows.ApplicationModel.Store.dll" >nul 2>&1
-    copy /y "Activador\64bits\AT1\Windows.ApplicationModel.Store.dll" "%USERPROFILE%\Desktop\Windows.ApplicationModel.Store.dll" >nul 2>&1
+if exist "Activador\64bits\System32\Windows.ApplicationModel.Store.dll" (
+    copy /y "Activador\64bits\System32\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
+    copy /y "Activador\64bits\System32\Windows.ApplicationModel.Store.dll" "%USERPROFILE%\Desktop\Windows.ApplicationModel.Store.dll" >nul 2>&1
+)
+if exist "Activador\64bits\SysWOW64\Windows.ApplicationModel.Store.dll" (
+    copy /y "Activador\64bits\SysWOW64\Windows.ApplicationModel.Store.dll" "%SystemRoot%\SysWOW64\Windows.ApplicationModel.Store.dll" >nul 2>&1
+    copy /y "Activador\64bits\SysWOW64\Windows.ApplicationModel.Store.dll" "%USERPROFILE%\Desktop\Windows.ApplicationModel.Store.dll" >nul 2>&1
     if errorlevel 1 (
         echo Error al copiar archivos. Verifique los permisos.
         pause
@@ -85,16 +89,16 @@ goto menu
 :desactivar
 cls
 echo Desactivando el juego...
-if exist "Desactivador\32bits\DC1\Windows.ApplicationModel.Store.dll" (
-    copy /y "Desactivador\32bits\DC1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
+if exist "Desactivador\32bits\Windows.ApplicationModel.Store.dll" (
+    copy /y "Desactivador\32bits\Windows.ApplicationModel.Store.dll" "%SystemRoot%\System32\Windows.ApplicationModel.Store.dll" >nul 2>&1
     if errorlevel 1 (
         echo Error al copiar archivos. Verifique los permisos.
         pause
         goto menu
     )
 )
-if exist "Desactivador\64bits\DC1\Windows.ApplicationModel.Store.dll" (
-    copy /y "Desactivador\64bits\DC1\Windows.ApplicationModel.Store.dll" "%SystemRoot%\SysWOW64\Windows.ApplicationModel.Store.dll" >nul 2>&1
+if exist "Desactivador\64bits\Windows.ApplicationModel.Store.dll" (
+    copy /y "Desactivador\64bits\Windows.ApplicationModel.Store.dll" "%SystemRoot%\SysWOW64\Windows.ApplicationModel.Store.dll" >nul 2>&1
     if errorlevel 1 (
         echo Error al copiar archivos. Verifique los permisos.
         pause
