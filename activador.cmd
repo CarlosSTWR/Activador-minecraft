@@ -56,10 +56,17 @@ goto menu
 :descargar_actualizar
 cls
 echo Descargando y actualizando archivos necesarios...
-REM Sustituye los enlaces por los correctos cuando los tengas.
-REM Por ejemplo:
-REM curl -o Activador.zip [Enlace_GitHub_Activador]
-REM curl -o Desactivador.zip [Enlace_GitHub_Desactivador]
+cd /d "%~dp0"
+echo Clonando repositorio en: %cd%
+if exist "Activador-minecraft" (
+    rmdir /s /q "Activador-minecraft"
+)
+git clone https://github.com/CarlosSTWR/Activador-minecraft.git
+if errorlevel 1 (
+    echo Error al clonar el repositorio.
+    pause
+    goto menu
+)
 echo Descarga y actualizacion completadas.
 pause
 goto menu
